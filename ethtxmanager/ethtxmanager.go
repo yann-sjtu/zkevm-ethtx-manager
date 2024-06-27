@@ -1003,6 +1003,10 @@ func (c *Client) ProcessPendingMonitoredTxs(ctx context.Context, resultHandler R
 					break
 				}
 
+				if result.Status == MonitoredTxStatusSafe || result.Status == MonitoredTxStatusFinalized {
+					break
+				}
+
 				mTxResultLogger.Infof("waiting for monitored tx to get confirmed, status: %v", result.Status.String())
 			}
 		}
